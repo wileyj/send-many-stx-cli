@@ -62,7 +62,7 @@ jobs:
           target_commitish: ${{ github.sha }}
           make_latest: true
           generate_release_notes: true
-          # token: ${{ secrets.PAT_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
           
   # create-release:
   #   name: Create Release
