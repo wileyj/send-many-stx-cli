@@ -33,23 +33,23 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN }}
-      - name: Setup git
-        if: ${{ steps.version-check.outputs.skipped == 'false' }}
-        run: |
-          git config --global user.email ${{ secrets.GH_EMAIL }}
-          git config --global user.name ${{ secrets.GH_USERNAME }}
-      - name: Generate oclif README
-        if: ${{ steps.version-check.outputs.skipped == 'false' }}
-        id: oclif-readme
-        run: |
-          npm install
-          npm run build
-          npm exec oclif readme
-          if [ -n "$(git status --porcelain)" ]; then
-            git add .
-            git commit -am "chore: update README.md"
-            git push -u origin ${{ github.ref_name }}
-          fi
+      # - name: Setup git
+      #   if: ${{ steps.version-check.outputs.skipped == 'false' }}
+      #   run: |
+      #     git config --global user.email ${{ secrets.GH_EMAIL }}
+      #     git config --global user.name ${{ secrets.GH_USERNAME }}
+      # - name: Generate oclif README
+      #   if: ${{ steps.version-check.outputs.skipped == 'false' }}
+      #   id: oclif-readme
+      #   run: |
+      #     npm install
+      #     npm run build
+      #     npm exec oclif readme
+      #     if [ -n "$(git status --porcelain)" ]; then
+      #       git add .
+      #       git commit -am "chore: update README.md"
+      #       git push -u origin ${{ github.ref_name }}
+      #     fi
       # - name: Failure
       #   run: |
       #     exit 1
