@@ -1,19 +1,9 @@
 name: publish
 
 on:
-  # push:
-  #   tags:
-  #     #- v[0-9]+.[0-9]+.[0-9]+
-  #     - '**'
-  # workflow_run:
-  #   workflows: ["version, tag and github release"]
-  #   types: [completed]
   release:
-    # types:
-    #   - released
-    #   - created
-    #   - published
-
+    types:
+      - released
 jobs:
   publish:
     runs-on: ubuntu-latest

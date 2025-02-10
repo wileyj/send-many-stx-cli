@@ -32,7 +32,7 @@ jobs:
             echo "tag=v$package_version" >> $GITHUB_OUTPUT
           fi
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
       - name: Setup git
         if: ${{ steps.version-check.outputs.skipped == 'false' }}
         run: |
@@ -62,6 +62,7 @@ jobs:
           target_commitish: ${{ github.sha }}
           make_latest: true
           generate_release_notes: true
+          # token: ${{ secrets.PAT_TOKEN }}
           
   # create-release:
   #   name: Create Release
