@@ -1,14 +1,14 @@
 name: publish
 
 on:
-  workflow_run:
-    workflows: ["version, tag and github release"]
-    types: [completed]
-  # release:
-  #   types:
-  #     - released
-  #     - created
-  #     - published
+  # workflow_run:
+  #   workflows: ["version, tag and github release"]
+  #   types: [completed]
+  release:
+    # types:
+    #   - released
+    #   - created
+    #   - published
 
 jobs:
   publish:
