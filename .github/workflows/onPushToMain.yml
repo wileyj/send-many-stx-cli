@@ -54,29 +54,21 @@ jobs:
       #   run: |
       #     exit 1
       - name: Create Github Release
-        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda #v2.2.1
+        uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5
         if: ${{ steps.version-check.outputs.skipped == 'false' }}
         with:
           name: ${{ steps.version-check.outputs.tag }}
-          tag_name: ${{ steps.version-check.outputs.tag }}
-          target_commitish: ${{ github.sha }}
-          make_latest: true
-          generate_release_notes: true
+          tag: ${{ steps.version-check.outputs.tag }}
+          commit: ${{ github.ref_name }}
           token: ${{ secrets.PAT_TOKEN }}
-          
-  # create-release:
-  #   name: Create Release
-  #   needs: 
-  #     - release
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: Create Github Release
-  #       uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda #v2.2.1
-  #       if: ${{ needs.release.outputs.skipped == 'false' }}
-  #       with:
-  #         name: ${{ needs.release.outputs.tag }}
-  #         tag_name: ${{ needs.release.outputs.tag }}
-  #         target_commitish: ${{ github.sha }}
-  #         make_latest: true
-  #         generate_release_notes: true
+          skipIfReleaseExists: true
+      # - name: Create Github Release
+      #   uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda #v2.2.1
+      #   if: ${{ steps.version-check.outputs.skipped == 'false' }}
+      #   with:
+      #     name: ${{ steps.version-check.outputs.tag }}
+      #     tag_name: ${{ steps.version-check.outputs.tag }}
+      #     target_commitish: ${{ github.sha }}
+      #     make_latest: true
+      #     generate_release_notes: true
+      #     token: ${{ secrets.PAT_TOKEN }}
