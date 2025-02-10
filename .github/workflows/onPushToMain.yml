@@ -50,8 +50,14 @@ jobs:
             git commit -am "chore: update README.md"
             git push -u origin ${{ github.ref_name }}
           fi
-      - name: Upload Release
-        id: upload_release
+  create-release:
+    name: Create Release
+    needs: 
+      - release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create Github Release
         uses: softprops/action-gh-release@69320dbe05506a9a39fc8ae11030b214ec2d1f87 #v2.0.5
         if: ${{ needs.release.outputs.skipped == 'false' }}
         with:
