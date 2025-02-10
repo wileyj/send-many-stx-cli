@@ -19,5 +19,5 @@ jobs:
         run: |
           echo "github.event_name: ${{github.event_name}}"
           echo "github.event.action: ${{github.event.action}}"
-          echo "CONTEXT: ${{env.GITHUB_CONTEXT}}"
+          echo "CONTEXT: ${{GITHUB_CONTEXT}}"
 
